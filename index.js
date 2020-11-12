@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 app.get('/:token_id', async function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   web3 = new Web3(
-    new Web3.providers.HttpProvider(`https://rinkeby.infura.io/v3/${process.env.INFURA_ID}`)
+    new Web3.providers.HttpProvider(`https://mainnet.infura.io/v3/${process.env.INFURA_ID}`)
   );
   const devicesInstance = new web3.eth.Contract(Devices.abi, process.env.ADDRESS_DEVICE_CONTRACT);
   try {
@@ -52,8 +52,37 @@ app.get('/:token_id', async function (req, res) {
     };
     return res.send(data);
   } catch (error) {
-    res.status(404);
-    return res.send('not found');
+    const data = {
+      name: '',
+      attributes: [
+        {
+          trait_type: 'id',
+          value: ''
+        },
+        {
+          trait_type: 'model',
+          value: ''
+        },
+        {
+          trait_type: 'color',
+          value: ''
+        },
+        {
+          trait_type: 'price',
+          value: ''
+        },
+        {
+          trait_type: 'unit',
+          value: ''
+        },
+        {
+          trait_type: 'others',
+          value: ''
+        }
+      ],
+      image: ''
+    };
+    return res.send(data);
   }
 });
 
@@ -65,7 +94,7 @@ app.get('/image/:model/:color', function (req, res) {
     res.sendFile(__dirname + '/' + phone.img);
   } catch (error) {
     res.status(404);
-    return res.send('not found');
+    return res.send('Not Found');
   }
 });
 
