@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
   res.send('Get ready for OpenSea!');
 });
 
-app.get('/phone/:token_id', async function (req, res) {
+app.get('/:token_id', async function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   web3 = new Web3(
     new Web3.providers.HttpProvider(`https://rinkeby.infura.io/v3/${process.env.INFURA_ID}`)
