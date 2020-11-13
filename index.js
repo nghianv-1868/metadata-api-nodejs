@@ -48,7 +48,8 @@ app.get('/:token_id', async function (req, res) {
           value: deviceInfo.others
         }
       ],
-      image: `${process.env.DOMAIN}/image/${deviceInfo.model}/${deviceInfo.color}`
+      image: `${process.env.DOMAIN}/image/${deviceInfo.model}/${deviceInfo.color}`,
+      external_link: 'https://phonefarm.finance'
     };
     return res.send(data);
   } catch (error) {
@@ -80,7 +81,8 @@ app.get('/:token_id', async function (req, res) {
           value: ''
         }
       ],
-      image: ''
+      image: '',
+      external_link: 'https://phonefarm.finance'
     };
     return res.send(data);
   }
